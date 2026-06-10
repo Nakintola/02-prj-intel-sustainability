@@ -1,1 +1,263 @@
-/* Add your CSS here */
+
+@import url('https://fonts.googleapis.com/css2?family=Intel+Clear:wght@300;400;700&family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+ 
+:root {
+  --intel-blue: #0068B5;
+  --intel-blue-dark: #004A86;
+  --intel-blue-light: #00AEEF;
+  --intel-white: #FFFFFF;
+  --intel-light-gray: #F4F7FA;
+  --intel-mid-gray: #D0DCE8;
+  --intel-dark: #1A1A2E;
+  --intel-text: #2C3E50;
+  --card-bg: #FFFFFF;
+  --card-hover-bg: #0068B5;
+  --transition-speed: 0.35s;
+}
+ 
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+html {
+  scroll-behavior: smooth;
+}
+ 
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  background-color: var(--intel-light-gray);
+  color: var(--intel-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  background: linear-gradient(135deg, var(--intel-blue-dark) 0%, var(--intel-blue) 60%, var(--intel-blue-light) 100%);
+  color: var(--intel-white);
+  padding: 60px 40px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+ 
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -60px;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  pointer-events: none;
+}
+ 
+header > div {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 28px;
+  filter: brightness(0) invert(1); 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--intel-white);
+}
+ 
+header p {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.88);
+}
+ 
+section {
+  display: flex;
+  flex-direction: row;         
+  gap: 24px;
+  padding: 60px 48px;
+  overflow-x: auto;            
+  scroll-snap-type: x mandatory; 
+  -webkit-overflow-scrolling: touch;
+  align-items: stretch;
+}
+
+section::-webkit-scrollbar {
+  height: 6px;
+}
+section::-webkit-scrollbar-track {
+  background: var(--intel-mid-gray);
+  border-radius: 3px;
+}
+section::-webkit-scrollbar-thumb {
+  background: var(--intel-blue);
+  border-radius: 3px;
+}
+
+section > div {
+  min-width: 260px;
+  max-width: 280px;
+  flex-shrink: 0;
+
+  scroll-snap-align: start;    
+
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 28px 22px;
+  box-shadow: 0 4px 16px rgba(0, 104, 181, 0.10);
+  border: 1px solid var(--intel-mid-gray);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+ 
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+}
+
+section > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--intel-blue), var(--intel-blue-light));
+  border-radius: 14px 14px 0 0;
+  transition: height var(--transition-speed) ease;
+}
+
+section > div h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--intel-blue);
+  margin-bottom: 6px;
+  line-height: 1;
+  transition: color var(--transition-speed) ease;
+}
+ 
+section > div h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--intel-text);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color var(--transition-speed) ease;
+}
+
+section > div img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  display: block;
+  background-color: var(--intel-mid-gray);
+}
+ 
+section > div p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #555;
+  transition: color var(--transition-speed) ease;
+}
+
+section > div:hover {
+  background-color: var(--card-hover-bg);
+  transform: translateY(-10px) scale(1.02); /* lift + slight scale */
+  box-shadow: 0 20px 40px rgba(0, 104, 181, 0.30);
+}
+ 
+section > div:hover::before {
+  height: 6px;  
+  background: linear-gradient(90deg, var(--intel-blue-light), #FFFFFF);
+}
+ 
+section > div:hover h2 {
+  color: rgba(255, 255, 255, 0.75);
+}
+ 
+section > div:hover h3 {
+  color: var(--intel-white);
+}
+ 
+section > div:hover p {
+  color: rgba(255, 255, 255, 0.90);
+}
+
+body > p {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #888;
+  padding: 0 0 36px;
+  letter-spacing: 0.4px;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 48px 24px 56px;
+  }
+ 
+  header img {
+    width: 90px;
+  }
+ 
+  section {
+    flex-direction: column;    
+    overflow-x: visible;
+    scroll-snap-type: none;    
+    padding: 32px 20px;
+    gap: 20px;
+    align-items: center;
+  }
+ 
+  section > div {
+    min-width: unset;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+ 
+
+@media (prefers-reduced-motion: reduce) {
+  section > div {
+    transition: none;
+  }
+  section > div:hover {
+    transform: none;
+  }
+}
